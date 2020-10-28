@@ -4,7 +4,7 @@
       style="position:relative;"
   >
     <slot name="listScope" :response="lastResponse" />
-    <div v-if="paginationTotalPage === 0" class="empty-status">
+    <div v-if="paginationTotalPage === 0 && showEmptySlot === true" class="empty-status">
       <slot name="emptyNotification">
         <div class="default-empty">
           <div>暂无数据</div>
@@ -39,6 +39,15 @@ export default {
     ElRow: Row
   },
   props: {
+    /**
+     * 是否显示空提示插槽
+     **/
+    showEmptySlot: {
+      type: Boolean,
+      default() {
+        return true
+      }
+    },
     /**
      * 总是隐藏翻页器
      ***/
